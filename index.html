@@ -1,1 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
 
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#0b0f19"
+    >
+
+    <meta
+        name="description"
+        content="JARVIS AI - Real AI with real-time web search"
+    >
+
+    <link
+        rel="manifest"
+        href="./manifest.json"
+    >
+
+    <title>JARVIS AI</title>
+
+    <link
+        rel="stylesheet"
+        href="./style.css"
+    >
+</head>
+
+<body>
+
+<div id="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">
+                <i class="fa-solid fa-robot"></i>
+            </div>
+
+            <div>
+                <h1>JARVIS AI</h1>
+                <span>REAL-TIME INTELLIGENCE</span>
+            </div>
+        </div>
+
+
+        <button
+            id="newChatBtn"
+            class="new-chat-btn"
+        >
+            <i class="fa-solid fa-plus"></i>
+            New Chat
+        </button>
+
+
+        <div class="sidebar-section">
+
+            <div class="section-title">
+                AI TOOLS
+            </div>
+
+            <div id="toolsList"></div>
+
+        </div>
+
+
+        <div class="sidebar-bottom">
+
+            <button id="accountBtn" class="side-button">
+                <i class="fa-solid fa-user"></i>
+                Account
+            </button>
+
+            <button id="settingsBtn" class="side-button">
+                <i class="fa-solid fa-gear"></i>
+                Settings
+            </button>
+
+            <button id="installBtn" class="side-button">
+                <i class="fa-solid fa-download"></i>
+                Install App
+            </button>
+
+            <div class="account-status">
+
+                <div id="accountStatus">
+                    Guest Mode
+                </div>
+
+                <small id="quotaText">
+                    Free AI
+                </small>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+
+                <div class="active-tool">
+                    <span id="activeToolIcon">🤖</span>
+
+                    <span id="activeToolName">
+                        JARVIS Chat
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <div
+                    id="connectionStatus"
+                    class="connection-status"
+                >
+                    <span class="status-dot"></span>
+                    Connecting...
+                </div>
+
+                <button
+                    id="historyBtn"
+                    class="icon-button"
+                    title="History"
+                >
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- CHAT -->
+        <section
+            id="chat"
+            class="chat"
+        >
+
+            <div
+                id="welcome"
+                class="welcome"
+            >
+
+                <div class="welcome-icon">
+                    🤖
+                </div>
+
+                <h2>
+                    Hello, I'm JARVIS.
+                </h2>
+
+                <p>
+                    Real AI + real-time web search.
+                </p>
+
+                <div class="quick-prompts">
+
+                    <button
+                        class="quick-prompt"
+                        data-prompt="What are the latest important news today?"
+                    >
+                        🌐 Latest news
+                    </button>
+
+                    <button
+                        class="quick-prompt"
+                        data-prompt="Explain photosynthesis for a grade 7 student."
+                    >
+                        📚 Explain something
+                    </button>
+
+                    <button
+                        class="quick-prompt"
+                        data-prompt="Search the web and tell me the latest developments in artificial intelligence."
+                    >
+                        🔎 Search the web
+                    </button>
+
+                    <button
+                        class="quick-prompt"
+                        data-prompt="Help me write a Python program."
+                    >
+                        💻 Coding
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ATTACHMENT -->
+        <div
+            id="attachmentPreview"
+            class="attachment-preview hidden"
+        >
+            <span id="attachmentName"></span>
+
+            <button id="removeAttachment">
+                ×
+            </button>
+        </div>
+
+
+        <!-- INPUT -->
+        <div class="composer">
+
+            <input
+                id="fileInput"
+                type="file"
+                hidden
+                accept="image/*,.pdf,.txt,.doc,.docx"
+            >
+
+            <button
+                id="attachBtn"
+                class="composer-button"
+                title="Attach file"
+            >
+                <i class="fa-solid fa-paperclip"></i>
+            </button>
+
+
+            <button
+                id="voiceBtn"
+                class="composer-button"
+                title="Voice input"
+            >
+                <i class="fa-solid fa-microphone"></i>
+            </button>
+
+
+            <textarea
+                id="messageInput"
+                rows="1"
+                placeholder="Ask JARVIS anything..."
+            ></textarea>
+
+
+            <button
+                id="sendBtn"
+                class="send-button"
+            >
+                <i class="fa-solid fa-arrow-up"></i>
+            </button>
+
+        </div>
+
+
+        <div class="composer-note">
+            JARVIS can search the live web when current information is needed.
+        </div>
+
+    </main>
+
+
+    <!-- HISTORY -->
+    <aside
+        id="historyPanel"
+        class="history-panel"
+    >
+
+        <div class="history-header">
+
+            <h2>
+                Neural Logs
+            </h2>
+
+            <button
+                id="closeHistoryBtn"
+                class="icon-button"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div
+            id="historyList"
+            class="history-list"
+        >
+            <div class="empty-history">
+                Sign in to save conversations across devices.
+            </div>
+        </div>
+
+
+        <button
+            id="clearHistoryBtn"
+            class="clear-history"
+        >
+            Clear Account History
+        </button>
+
+    </aside>
+
+</div>
+
+
+<!-- ACCOUNT MODAL -->
+<div
+    id="accountModal"
+    class="modal hidden"
+>
+
+    <div class="modal-card">
+
+        <button
+            class="modal-close"
+            data-close="accountModal"
+        >
+            ×
+        </button>
+
+        <h2>JARVIS Account</h2>
+
+        <p>
+            Sign in to save your conversations to your account.
+        </p>
+
+
+        <form id="authForm">
+
+            <input
+                id="emailInput"
+                type="email"
+                placeholder="Email"
+                required
+            >
+
+            <input
+                id="passwordInput"
+                type="password"
+                placeholder="Password"
+                minlength="6"
+                required
+            >
+
+            <button
+                type="submit"
+                class="primary-button"
+            >
+                Sign In
+            </button>
+
+        </form>
+
+
+        <button
+            id="registerBtn"
+            class="secondary-button"
+        >
+            Create Account
+        </button>
+
+
+        <button
+            id="logoutBtn"
+            class="danger-button hidden"
+        >
+            Sign Out
+        </button>
+
+
+        <div id="authMessage"></div>
+
+    </div>
+
+</div>
+
+
+<!-- SETTINGS -->
+<div
+    id="settingsModal"
+    class="modal hidden"
+>
+
+    <div class="modal-card">
+
+        <button
+            class="modal-close"
+            data-close="settingsModal"
+        >
+            ×
+        </button>
+
+        <h2>Settings</h2>
+
+        <label class="setting-row">
+
+            <span>
+                Light mode
+            </span>
+
+            <input
+                id="themeToggle"
+                type="checkbox"
+            >
+
+        </label>
+
+        <label class="setting-row">
+
+            <span>
+                Voice replies
+            </span>
+
+            <input
+                id="voiceReplyToggle"
+                type="checkbox"
+            >
+
+        </label>
+
+    </div>
+
+</div>
+
+
+<!-- INSTALL -->
+<div
+    id="installModal"
+    class="modal hidden"
+>
+
+    <div class="modal-card">
+
+        <button
+            class="modal-close"
+            data-close="installModal"
+        >
+            ×
+        </button>
+
+        <h2>Install JARVIS</h2>
+
+        <p>
+            Install JARVIS as an app on your device.
+        </p>
+
+        <button
+            id="confirmInstallBtn"
+            class="primary-button"
+        >
+            Install
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- LOADING -->
+<div
+    id="loadingOverlay"
+    class="loading-overlay hidden"
+>
+
+    <div class="loader"></div>
+
+    <div id="loadingText">
+        JARVIS is thinking...
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+<div
+    id="toast"
+    class="toast"
+></div>
+
+
+<script src="./app.js"></script>
+
+</body>
+</html>
